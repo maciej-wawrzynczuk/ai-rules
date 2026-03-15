@@ -15,3 +15,5 @@ AI:
 - Check spelling and grammar. Correct without confirmation.
 - Check style. Do not accept ambiguity. Propose readability improvements.
 - Check against INVEST criteria.
+
+Phase gate: Human acceptance.
