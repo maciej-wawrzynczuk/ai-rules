@@ -1,13 +1,12 @@
 # Basic workflow
 
-The basic build block is an epic.
+The basic building block is an epic. An epic is the smallest deliverable that makes sense.
 
 ## Phases
 
-## 1 - Capture intent
+### 1 - Epic: Human-created
 
-The input files created by human.
+Input file: `doc/epic-<slug>/SPEC.md`
 
-Input files: `doc/epic-<slug>/SPEC.md`
-
-See [spec_template.md](spec_template.md).
+Human: Writes the epic.
+AI: Check against INVEST criteria.
