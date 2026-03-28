@@ -49,13 +49,13 @@ Output file: `doc/epic-<slug>/PLAN.md`. AI-drafted with human oversight.
 
 Contains:
 
-- Tasks list. Every feature becomes a task. A tasek description include:
+- Tasks list. Every feature becomes a task. A task description includes:
   - Feature name
-  - Dependencies on other tasks. Can be run in parallel or not?
+  - Parallelism constraints.
   - List of changed files.
   - Exact list of changes.
   - List of tests to be created. From test cases from design.
-- Execution order. Tasks may be groupped according to dependencies.
+- Execution order. Tasks may be grouped according to dependencies.
 
 Phase gate:
 
