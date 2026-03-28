@@ -41,3 +41,25 @@ Phase gate:
 - No open decisions remain.
 - All technical notes from SPEC reflected in feature details or NFRs.
 - Human acceptance.
+
+### 3 - Plan: AI + Human
+
+Input file: `doc/epic-<slug>/DESIGN.md`
+Output file: `doc/epic-<slug>/PLAN.md`. AI-drafted with human oversight.
+
+Contains:
+
+- Tasks list. Every feature becomes a task. A tasek description include:
+  - Feature name
+  - Dependencies on other tasks. Can be run in parallel or not?
+  - List of changed files.
+  - Exact list of changes.
+  - List of tests to be created. From test cases from design.
+- Execution order. Tasks may be groupped according to dependencies.
+
+Phase gate:
+
+- Each feature covered.
+- Each test case covered.
+- No task larger than single working session.
+- Human acceptance.
