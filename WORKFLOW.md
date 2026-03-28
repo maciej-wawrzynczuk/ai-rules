@@ -63,3 +63,37 @@ Phase gate:
 - Each test case covered.
 - No task larger than single working session.
 - Human acceptance.
+
+
+### 4 Execution: AI. Human interaction - when necessary
+
+Run in loop:
+
+Input file: `doc/epic-<slug>/DESIGN.md`
+Track progress in `doc/epic-<slug>/EXECUTION-PROGRESS.md`
+
+1. Pick task.
+2. Code.
+3. Run tests. If successfull or no tests - report task complete. Go to 1.
+4. In case of errors:
+   1. Report errors.
+   2. Fix. Report changes.
+   3. If tests passes - report task complete.
+5. Commit task.
+6. Repeat until all tasks complete.
+
+#### Boundaries
+
+- **Always:** stay within the task's file scope
+- **Always:** run tests after each task
+- **Always:** commit after task complete
+- **Ask first:** changing files not listed in the task
+- **Ask first:** adding new dependencies
+- **Never:** skip a failing test
+- **Never:** modify SPEC or PLAN without human approval
+- **Never:** reorder Execution Order without human approval
+
+#### Phase gate
+
+- All test successfull.
+- All tasks finished.
