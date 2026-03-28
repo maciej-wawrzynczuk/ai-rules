@@ -15,6 +15,8 @@ AI:
 - Check spelling and grammar. Correct without confirmation.
 - Check style. Do not accept ambiguity. Propose readability improvements.
 - Check against INVEST criteria.
+- Check that each story has a clear user role, action, and outcome (who / what / why).
+- Flag stories that are too large to deliver in a single epic.
 
 Phase gate: Human acceptance.
 
@@ -22,6 +24,8 @@ Phase gate: Human acceptance.
 
 Input file: `doc/epic-<slug>/SPEC.md`
 Output file: `doc/epic-<slug>/DESIGN.md`. AI-drafted with human oversight.
+
+Each story from SPEC must be traceable to at least one feature. Multiple stories may merge into one feature; one story may split into several. Document the mapping.
 
 Contains:
 
@@ -36,7 +40,7 @@ Contains:
 
 Phase gate:
 
-- All stories covered.
+- All stories traceable to at least one feature. Mapping documented.
 - All dependencies conform to Clean Architecture.
 - No open decisions remain.
 - All technical notes from SPEC reflected in feature details or NFRs.
@@ -74,13 +78,11 @@ Track progress in `doc/epic-<slug>/EXECUTION-PROGRESS.md`
 
 1. Pick task.
 2. Code.
-3. Run tests. If successful or no tests — report task complete. Go to 1.
-4. In case of errors:
-   1. Report errors.
-   2. Fix. Report changes.
-   3. If tests pass — report task complete.
-5. Commit task.
-6. Repeat until all tasks complete.
+3. Run all relevant tests.
+4. If tests fail:
+   1. Fix. Report changes.
+   2. If still failing after one retry — stop and report to human.
+5. Report task complete. Commit. Go to 1.
 
 #### Boundaries
 
