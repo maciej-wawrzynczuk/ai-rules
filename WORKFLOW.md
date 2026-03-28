@@ -65,20 +65,20 @@ Phase gate:
 - Human acceptance.
 
 
-### 4 Execution: AI. Human interaction - when necessary
+### 4 - Execution: AI, human interaction when necessary
 
 Run in loop:
 
-Input file: `doc/epic-<slug>/DESIGN.md`
+Input file: `doc/epic-<slug>/PLAN.md`
 Track progress in `doc/epic-<slug>/EXECUTION-PROGRESS.md`
 
 1. Pick task.
 2. Code.
-3. Run tests. If successfull or no tests - report task complete. Go to 1.
+3. Run tests. If successful or no tests — report task complete. Go to 1.
 4. In case of errors:
    1. Report errors.
    2. Fix. Report changes.
-   3. If tests passes - report task complete.
+   3. If tests pass — report task complete.
 5. Commit task.
 6. Repeat until all tasks complete.
 
@@ -95,5 +95,5 @@ Track progress in `doc/epic-<slug>/EXECUTION-PROGRESS.md`
 
 #### Phase gate
 
-- All test successfull.
+- All tests successful.
 - All tasks finished.
