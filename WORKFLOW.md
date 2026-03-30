@@ -34,6 +34,8 @@ Phase gate:
 - Human acceptance.
 - Commit means acceptance.
 
+> If SPEC changes after Phase 2 or later, restart from Phase 2. DESIGN and PLAN are invalidated.
+
 ### 2 - Design: AI + Human
 
 Input file: `doc/epic-<slug>/SPEC.md`
