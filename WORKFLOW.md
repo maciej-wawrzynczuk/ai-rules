@@ -71,8 +71,7 @@ Contains:
 - Tasks list. Every feature becomes a task. A task description includes:
   - Feature name
   - Parallelism constraints.
-  - List of changed files.
-  - Exact list of changes.
+  - List of changed files with brief description of planned changes.
   - List of tests to be created. From test cases from design.
 - Execution order. Tasks may be grouped according to dependencies.
 
