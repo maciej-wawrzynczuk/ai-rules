@@ -2,9 +2,19 @@
 
 The basic building block is an epic. An epic is the smallest deliverable that makes sense.
 
+## Branches
+
+`devel` — the working branch
+`epic/<slug>` — epic branch
+`main` — release branch
+
+**Always** check if we're on the right branch.
+
 ## Phases
 
 ### 1 - Epic: Human-created
+
+Human creates branch.
 
 Input file: `doc/epic-<slug>/SPEC.md`
 
@@ -18,7 +28,11 @@ AI:
 - Check that each story has a clear user role, action, and outcome (who / what / why).
 - Flag stories that are too large to deliver in a single epic.
 
-Phase gate: Human acceptance.
+Phase gate:
+
+- All checks passed.
+- Human acceptance.
+- Commit means acceptance.
 
 ### 2 - Design: AI + Human
 
@@ -45,6 +59,7 @@ Phase gate:
 - No open decisions remain.
 - All technical notes from SPEC reflected in feature details or NFRs.
 - Human acceptance.
+- Commit means acceptance.
 
 ### 3 - Plan: AI + Human
 
@@ -67,6 +82,7 @@ Phase gate:
 - Each test case covered.
 - No task larger than single working session.
 - Human acceptance.
+- Commit means acceptance.
 
 
 ### 4 - Execution: AI, human interaction when necessary
@@ -99,3 +115,12 @@ Track progress in `doc/epic-<slug>/EXECUTION-PROGRESS.md`
 
 - All tests successful.
 - All tasks finished.
+
+> No human acceptance required. Passing tests are the acceptance criterion.
+
+#### Cleanup
+
+After a successful cycle, AI:
+
+- Merges to `devel`
+- Deletes the epic branch.
