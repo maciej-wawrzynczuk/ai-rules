@@ -4,29 +4,31 @@ The basic building block is an epic. An epic is the smallest deliverable that ma
 
 ## Branches
 
-`devel` — the working branch
-`epic/<slug>` — epic branch
-`main` — release branch
+- `devel` — working branch
+- `epic/<slug>` — epic branch
+- `main` — release branch
 
-**Always** check if we're on the right branch.
+**Always** check that you are on the right branch.
 
 ## Phases
 
-### 1 - Epic: Human-created
+All phase documents live under `doc/epic-<slug>/`.
 
-Human creates branch.
+### Phase 1 — Epic
 
-Input file: `doc/epic-<slug>/SPEC.md`
+**Owner:** Human (AI assists)
 
-Human: Writes the epic.
+Input: `SPEC.md`
+
+Human writes the epic.
 
 AI:
 
-- Check spelling and grammar. Correct without confirmation.
-- Check style. Do not accept ambiguity. Propose readability improvements.
-- Check against INVEST criteria.
-- Check that each story has a clear user role, action, and outcome (who / what / why).
-- Flag stories that are too large to deliver in a single epic.
+- Checks spelling and grammar. Corrects without confirmation.
+- Checks style. Does not accept ambiguity. Proposes readability improvements.
+- Checks against INVEST criteria.
+- Checks that each story has a clear user role, action, and outcome (who / what / why).
+- Flags stories that are too large to deliver in a single epic.
 
 Phase gate:
 
@@ -34,25 +36,28 @@ Phase gate:
 - Human acceptance.
 - Commit means acceptance.
 
+> [!WARNING]
 > If SPEC changes after Phase 2 or later, restart from Phase 2. DESIGN and PLAN are invalidated.
 
-### 2 - Design: AI + Human
+### Phase 2 — Design
 
-Input file: `doc/epic-<slug>/SPEC.md`
-Output file: `doc/epic-<slug>/DESIGN.md`. AI-drafted with human oversight.
+**Owner:** AI + Human
+
+Input: `SPEC.md`
+Output: `DESIGN.md` — AI-drafted with human oversight.
 
 Each story from SPEC must be traceable to at least one feature. Multiple stories may merge into one feature; one story may split into several. Document the mapping.
 
 Contains:
 
-- System context. How the new feature fits into the existing system.
-- Dependencies. Upstream and downstream. Focus on clear boundaries between system components and proper dependency directions according to Uncle Bob's The Clean Architecture blog post.
-- Interfaces. API, CLI, and so on.
-- Introduced data structures.
-- Feature details. Including:
+- **System context.** How the new feature fits into the existing system.
+- **Dependencies.** Upstream and downstream. Focus on clear boundaries between system components and proper dependency directions according to Uncle Bob's The Clean Architecture blog post.
+- **Interfaces.** API, CLI, and so on.
+- **Introduced data structures.**
+- **Feature details.** Including:
   - Technical decisions with rationales.
   - Test cases.
-- NFRs. Like security and observability needs.
+- **NFRs.** Such as security and observability needs.
 
 Phase gate:
 
@@ -63,65 +68,83 @@ Phase gate:
 - Human acceptance.
 - Commit means acceptance.
 
-### 3 - Plan: AI + Human
+### Phase 3 — Plan
 
-Input file: `doc/epic-<slug>/DESIGN.md`
-Output file: `doc/epic-<slug>/PLAN.md`. AI-drafted with human oversight.
+**Owner:** AI + Human
+
+Input: `DESIGN.md`
+Output: `PLAN.md` — AI-drafted with human oversight.
 
 Contains:
 
-- Tasks list. Every feature becomes a task. A task description includes:
-  - Feature name
+- **Task list.** Every feature becomes a task. Each task description includes:
+  - Feature name.
   - Parallelism constraints.
-  - List of changed files with brief description of planned changes.
-  - List of tests to be created. From test cases from design.
-- Execution order. Tasks may be grouped according to dependencies.
+  - List of changed files with a brief description of planned changes.
+  - List of tests to be created, derived from design test cases.
+- **Execution order.** Tasks may be grouped by dependencies.
 
 Phase gate:
 
 - Each feature covered.
 - Each test case covered.
-- No task larger than single working session.
+- No task larger than a single working session.
 - Human acceptance.
 - Commit means acceptance.
 
+### Phase 4 — Execution
 
-### 4 - Execution: AI, human interaction when necessary
+**Owner:** AI (human consulted when necessary)
 
-Run in loop:
+Input: `PLAN.md`
+Progress tracked in: `EXECUTION-PROGRESS.md`
 
-Input file: `doc/epic-<slug>/PLAN.md`
-Track progress in `doc/epic-<slug>/EXECUTION-PROGRESS.md`
-
-1. Pick task.
-2. Code.
-3. Run all relevant tests.
-4. If tests fail:
-   1. Fix. Report changes.
-   2. If still failing after one retry — stop and report to human.
-5. Report task complete. Commit. Go to 1.
+```mermaid
+flowchart TD
+    A[Pick next task] --> B[Code]
+    B --> C[Run relevant tests]
+    C --> D{Tests pass?}
+    D -- Yes --> E[Commit]
+    E --> F{More tasks?}
+    F -- Yes --> A
+    F -- No --> G([Done])
+    D -- No --> H[Fix and report]
+    H --> I[Run tests again]
+    I --> J{Tests pass?}
+    J -- Yes --> E
+    J -- No --> K([Stop — report to human])
+```
 
 #### Boundaries
 
-- **Always:** stay within the task's file scope
-- **Always:** run tests after each task
-- **Always:** commit after task complete
-- **Ask first:** changing files not listed in the task
-- **Ask first:** adding new dependencies
-- **Never:** skip a failing test
-- **Never:** modify SPEC or PLAN without human approval
-- **Never:** reorder Execution Order without human approval
+**Always:**
+
+- Stay within the task's file scope.
+- Run tests after each task.
+- Commit after task is complete.
+
+**Ask first:**
+
+- Changing files not listed in the task.
+- Adding new dependencies.
+
+**Never:**
+
+- Skip a failing test.
+- Modify SPEC or PLAN without human approval.
+- Reorder Execution Order without human approval.
 
 #### Phase gate
 
 - All tests successful.
 - All tasks finished.
 
+> [!NOTE]
 > No human acceptance required. Passing tests are the acceptance criterion.
 
 #### Cleanup
 
 After a successful cycle, AI:
 
-- Merges to `devel`
+- Merges to `devel`.
 - Deletes the epic branch.
