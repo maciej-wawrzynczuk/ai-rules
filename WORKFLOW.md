@@ -99,20 +99,20 @@ Phase gate:
 Input: `PLAN.md`
 Progress tracked in: `EXECUTION-PROGRESS.md`
 
-```mermaid
-flowchart TD
-    A[Pick next task] --> B[Code]
-    B --> C[Run relevant tests]
-    C --> D{Tests pass?}
-    D -- Yes --> E[Commit]
-    E --> F{More tasks?}
-    F -- Yes --> A
-    F -- No --> G([Done])
-    D -- No --> H[Fix and report]
-    H --> I[Run tests again]
-    I --> J{Tests pass?}
-    J -- Yes --> E
-    J -- No --> K([Stop — report to human])
+```text
+Pick next task
+    → Code
+    → Run relevant tests
+    → Tests pass?
+        Yes → Commit
+                → More tasks?
+                    Yes → (repeat from top)
+                    No  → Done
+        No  → Fix and report
+                → Run tests again
+                → Tests pass?
+                    Yes → Commit
+                    No  → Stop — report to human
 ```
 
 #### Boundaries
