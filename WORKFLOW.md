@@ -130,6 +130,7 @@ Add the following information to `EXECUTION-PROGRESS.md`:
 
 - Stay within the task's file scope.
 - Run tests after each task.
+- Update relevant documentation after each task.
 - Commit after task is complete.
 
 **Ask first:**
@@ -157,3 +158,22 @@ After a successful cycle, AI:
 
 - Merges to `devel`.
 - Deletes the epic branch.
+
+## Documentation
+
+Keep the documentation in project's README.md file.
+Always check the existing documentation for irrelevant, contradicting, and duplicating information.
+Maintain the following sections:
+
+### User guide
+
+Information about every feature from the user's perspective.
+
+### Operator guide
+
+How to deploy, update, and clean up the application. If tools like GNU make are used, describe targets.
+
+### Developer guide
+
+- Overview of the program's structure, how its components are organized, and their relationships.
+- How to run integration and e2e test manually.
