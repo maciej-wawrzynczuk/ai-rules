@@ -105,15 +105,24 @@ Pick next task
     → Run relevant tests
     → Tests pass?
         Yes → Commit
-                → More tasks?
-                    Yes → (repeat from top)
-                    No  → Done
+             → More tasks?
+                 Yes → (repeat from top)
+                 No  → Done
         No  → Fix and report
-                → Run tests again
-                → Tests pass?
-                    Yes → Commit
-                    No  → Stop — report to human
+             → Run tests again
+             → Tests pass?
+                 Yes → Commit
+                 No  → Stop — report to human
 ```
+
+#### Progress tracking
+
+Add the following information to `EXECUTION-PROGRESS.md`:
+
+- Started or restarted task
+- Completed tasks
+- Failed tests. With quickly explained root cause.
+- Fixes applied with a quick explanation.
 
 #### Boundaries
 
